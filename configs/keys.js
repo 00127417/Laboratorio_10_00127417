@@ -1,6 +1,6 @@
 module.exports = {
     mongodb:
     {
-        URI: 'mongodb://localhost:27017/practica' 
+        URI: 'mongodb://localhost:27017/prueba' 
     }
 }

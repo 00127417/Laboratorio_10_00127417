@@ -3,8 +3,16 @@ const bcrypt = require('bcrypt'); // Para encriptar contraseñas
 const { Schema } = mongoose; //Objeto Schema para realizar diferentes operaciones
 const UserSchema = new Schema({
     //atributos con sus validaciones
+    name: { type: String},
+    lastName: {type: String},
+    username: {type: String},
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    //Espacio para post de ususario
+    posts:[{
+        type:Schema.Types.ObjectId,
+        ref: "post"
+    }]
 });
 UserSchema.statics.authenticate = function (email, password, callback) {
     User.findOne({ email: email })
@@ -13,7 +21,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
                 return callback(err)
             } else if (!user) {
                 var err = new Error('User not found.');
-                err.status = 401;
+                err.status = 401;       
                 return callback(err);
             }
             bcrypt.compare(password, user.password, function (err, result) {

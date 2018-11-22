@@ -24,4 +24,5 @@ router.get('/logout', AuthController.logout);
 router.use(AuthMiddleware.isAuthentication);
 //ruta para acceder al perifl
 router.get('/profile', AuthController.profile);
+router.get('/home',AuthController.home);
 module.exports = router;
